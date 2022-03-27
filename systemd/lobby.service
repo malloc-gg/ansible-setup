@@ -1,0 +1,16 @@
+[Unit]
+Description=Minecraft Lobby
+Requires=docker.service
+Wants=mariadb.service waterfall.service
+After=mariadb.service docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop lobby
+ExecStartPre=-/usr/bin/docker rm lobby
+ExecStart=/usr/bin/docker run --network minecraft --name lobby -e TYPE=PAPER -m 2g -p 0.0.0.0:24453:24453/udp -e VERSION=1.17.1 -e CFG_SERVER_NAME=Lobby -e REPLACE_ENV_VARIABLES=TRUE -v /srv/minecraft/common-plugins/:/plugins -v /srv/minecraft/lobby:/data -e MAX_WORLD_SIZE=10000 -e MEMORY=2G -e ONLINE_MODE=FALSE -e USE_AIKAR_FLAGS=true -e DIFFICULTY=peaceful -e EULA=TRUE --restart=always --ip 172.20.0.4 itzg/minecraft-server:java16
+ExecStop=-/usr/bin/docker stop lobby
+
+[Install]
+WantedBy=multi-user.target
+

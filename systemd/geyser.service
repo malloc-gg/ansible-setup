@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft GeyserMC Bedrock Proxy
+Requires=docker.service
+Wants=waterfall.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop geyser
+ExecStartPre=-/usr/bin/docker rm geyser
+ExecStart=/usr/bin/docker run --rm -m 1g -v /srv/minecraft/geyser/:/data --net host --name geyser geyser
+ExecStop=-/usr/bin/docker stop geyser
+
+[Install]
+WantedBy=multi-user.target

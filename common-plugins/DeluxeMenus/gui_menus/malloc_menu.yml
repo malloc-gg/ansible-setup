@@ -1,0 +1,337 @@
+open_command: menu
+register_command: true
+update_interval: 1
+size: 36
+menu_title: "Game Menu"
+open_commands:
+  - '[sound] BLOCK_BEACON_ACTIVATE'
+items:
+  creative_sandbox:
+    material: CRAFTING_TABLE
+    slot: 4
+    display_name: 'Your Sandbox'
+    lore:
+      - 'Visit your personal sandbox'
+    left_click_commands:
+      - '[player] ws get'
+      - '[player] ws home'
+      - '[close]'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.sandbox
+  community_goals:
+    material: ANVIL
+    hide_enchantments: true
+    enchantments:
+      - LUCK;1
+    slot: 4
+    display_name: 'Community Goals'
+    lore:
+      - 'Compete with other players for titles!'
+      - '&o/goals'
+    left_click_commands:
+      - '[openguimenu] community_goals'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.community_goals
+  lands:
+    material: GRASS_BLOCK
+    slot: 1
+    display_name: 'Lands'
+    lore:
+      - 'Manage your land claims'
+      - '&o/lands'
+    left_click_commands:
+      - '[openguimenu] community_goals'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.lands
+  'coords':
+    material: COMPASS
+    slot: 22
+    display_name: 'Toggle coordinates HUD'
+    lore:
+      - 'Toggle the coordinates HUD'
+      - '&o/coordinateshud toggle'
+    left_click_commands:
+      - '[player] coordinateshud toggle'
+      - '[message] Coordinates HUD toggled'
+      - '[close]'
+  'balance':
+    material: COBBLESTONE
+    slot: 0
+    display_name: 'Grist Balance'
+    view_requirement:
+      minimum_requirements: 2
+      requirements:
+        can_use:
+          type: has permission
+          permission: lighteconomy.player.balance
+        can_see:
+          type: has permission
+          permission: malloc.menus.grist
+    lore:
+      - '&l&8Balance: %vault_eco_balance% grist' 
+      - '&o/balance'
+    left_click_commands:
+      - '[player] balance'
+  'auctions':
+    material: DIAMOND
+    slot: 1
+    display_name: 'Auction House'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.auction
+    lore:
+      - 'Opens the auction house'
+      - 'Buy and bid on items for sale by other players'
+      - '&o/ah'
+    left_click_commands:
+      - '[player] ah'
+  'villagerdefense_stats':
+    material: EMERALD
+    slot: 13
+    display_name: 'Villager Defense Stats'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.villager-defense
+    lore:
+      - '&o/vd stats'
+    left_click_commands:
+      - '[player] vd stats'
+  'skywars_join':
+    material: DIAMOND_SWORD
+    slot: 3
+    display_name: 'Leave Game'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.skywars
+    lore:
+      - '&o/sw quit'
+    left_click_commands:
+      - '[player] sw quit'
+  'skywars_stats':
+    material: EMERALD
+    slot: 13
+    display_name: 'Skywars Stats'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.skywars
+    lore:
+      - '&o/sw stats'
+    left_click_commands:
+      - '[player] sw stats'
+  'skywars_leave':
+    material: BARRIER
+    slot: 5
+    display_name: 'Leave Game'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.skywars
+    lore:
+      - '&o/sw quit'
+    left_click_commands:
+      - '[player] sw quit'
+  'villagerdefense_leave':
+    material: BARRIER
+    slot: 5
+    display_name: 'Leave Game'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.villager-defense
+    lore:
+      - '&o/vd leave'
+    left_click_commands:
+      - '[player] vd leave'
+  'villagerdefense_join':
+    material: DIAMOND_SWORD
+    slot: 3
+    display_name: 'Join Random Game'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.villager-defense
+    lore:
+      - '&o/vd randomjoin'
+    left_click_commands:
+      - '[player] vd randomjoin'
+  'deathchest':
+    material: CHEST
+    slot: 8
+    display_name: 'Death Chests'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.deathchest
+    lore:
+      - 'Lists your death chests'
+      - 'Open a death chest to recover your lost items'
+      - '&o/angelchest'
+    left_click_commands:
+      - '[player] angelchest'
+      - '[close]'
+  'cosmetics':
+    material: ENDER_CHEST
+    slot: 35
+    display_name: "Cosmetics"
+    view_requirement:
+      minimum_requirements: 1
+      requirements:
+        can_use:
+          type: has permission
+          permission: gadgetsmenu.menuselector
+    left_click_commands:
+      - '[player] gmenu main'
+  'chat':
+    material: PAPER
+    slot: 30
+    display_name: 'Chat Channels'
+    left_click_commands:
+      - '[openguimenu] chat_menu'
+  'stats':
+    material: 'head-%player_name%'
+    slot: 31
+    display_name: 'Player Stats'
+    lore:
+      - '&7Join date: &f%plan_player_registered%'
+      - "&7Malloc Bytes: &4%playerpoints_points%"
+    left_click_commands:
+      - '[openguimenu] stats_menu'
+  'rtp':
+    material: FILLED_MAP
+    slot: 7
+    display_name: 'Random Teleport'
+    lore:
+      - 'Teleport to a random, unoccupied location.'
+      - 'A perfect way to start a new adventure!'
+      - '&o/rtp'
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.rtp
+    left_click_commands:
+      - '[player] rtp'
+      - '[close]'
+  'lobby':
+    material: NETHER_STAR
+    slot: 32
+    display_name: 'Return to Malloc Lobby'
+    update: true
+    lore:
+      - 'Returns you back to the lobby'
+      - '%bungee_total% players online'
+      - '&o/lobby'
+    left_click_commands:
+      - '[connect] lobby'
+  'runes_moderator_on':
+    material: BLUE_WOOL
+    slot: 27
+    display_name: 'Equip your moderator runes'
+    view_requirement:
+      minimum_requirements: 2
+      requirements:
+        can_use:
+          type: has permission
+          permission: malloc.flag.moderator
+        not_active:
+          type: '!has permission'
+          permission: group.flag-moderator
+    lore:
+      - 'Turns on Moderation mode in the game'
+    click_commands:
+      - '[player] giverune moderator'
+      - '[update]'
+  'runes_moderator_off':
+    material: GREEN_WOOL
+    slot: 27
+    display_name: 'Take off your moderator runes'
+    view_requirement:
+      requirements:
+        can_use:
+          type: has permission
+          permission: malloc.flag.moderator
+        is_active:
+          type: has permission
+          permission: group.flag-moderator
+    lore:
+      - 'Turns off Moderation mode in the game'
+    click_commands:
+      - '[player] takerune moderator'
+      - '[update]'
+  'join_survival':
+    material: DIAMOND_PICKAXE
+    slot: 1
+    display_name: "Survival"
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.servers
+        can_use:
+          type: has permission
+          permission: bungeecord.server.malloc
+    click_commands:
+      - '[connect] malloc'
+  'join_creative':
+    material: GRASS_BLOCK
+    slot: 3
+    display_name: "Creative"
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.servers
+        can_use:
+          type: has permission
+          permission: bungeecord.server.creative
+    click_commands:
+      - '[connect] creative'
+  'join_villager_defense':
+    material: ROTTEN_FLESH
+    slot: 5
+    display_name: "Villager Defense"
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.servers
+        can_use:
+          type: has permission
+          permission: bungeecord.server.villager-defense
+    click_commands:
+      - '[connect] villager-defense'
+  'join_skywars':
+    material: STONE
+    slot: 7
+    display_name: "Skywars"
+    view_requirement:
+      requirements:
+        can_see:
+          type: has permission
+          permission: malloc.menus.servers
+        can_use:
+          type: has permission
+          permission: bungeecord.server.skywars
+    click_commands:
+      - '[connect] skywars'

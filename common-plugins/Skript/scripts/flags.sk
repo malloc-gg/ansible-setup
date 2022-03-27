@@ -1,0 +1,42 @@
+command /giverune <string> <player=%player%>:
+	description: Remove a player's runes
+	trigger:
+		if arg-2 is not set:
+			send "Could not figure out who you wanted to toggle flags on. Are you the console?"
+		else if sender has permission "malloc.flag.%arg-1%":
+			send "&4&lEquipping &r%arg-2%&4&l with &e%arg-1% runes"
+			send title "&6&l+%arg-1%" with subtitle "runes equipped" to arg-2 for 1 second
+			send formatted "&6&lYou equipped your &r%arg-1% &6&lrunes! &r&7&o<command:/takerune %arg-1%>[Click to remove]" to arg-2
+			make console execute command "/lp user %arg-2% parent addtemp flag-%arg-1% 1d replace"
+			spawn 150 of dust using dustOption(orange, 10) at location of arg-2 offset by vector(0, 2, 0) with extra 0.5
+		else:
+			send "&4Access Denied."
+
+command /takerune <string> <player=%player%>:
+	description: Equip runes on a player
+	trigger:
+		if arg-2 is not set:
+			send "Could not figure out who you wanted to toggle flags on. Are you the console?"
+		else if sender has permission "malloc.flag.%arg-1%":
+			send "&4&lRemoving &r&e%arg-1%&4&l runes from &r%arg-2%"
+			send title "&3&l-%arg-1%" with subtitle "runes removed" to arg-2 for 1 second
+			send formatted "&3&o&lYour &r%arg-1%&3&o&l runes wore off... &r&7&o<command:/giverune %arg-1%>[Click to reequip]" to arg-2
+			make console execute command "/lp user %arg-2% parent removetemp flag-%arg-1% 1d"
+			spawn 150 of dust using dustOption(blue, 10) at location of arg-2 offset by vector(0, 2, 0) with extra 0.5
+		else:
+			send "&4Access Denied."
+
+command /runes <player=%player%>:
+	description: View a player's runes
+	trigger:
+		if arg-1 is not set:
+			send "Could not figure out who's flags you wanted to view. Are you the console?"
+		else:
+			send "&6&l%arg-1%'s runes:"
+			loop all groups:
+				if loop-string starts with "flag-":
+					set {_flagname} to the subtext of loop-string from index 6 to (the length of loop-string)
+					if arg-1 has permission "group.flag-%{_flagname}%":
+						send formatted "&c&l- <command:/takerune %{_flagname}% %arg-1%><tooltip:Click to remove &l%{_flagname}%>%{_flagname}% (equipped)"
+					else if arg-1 has permission "malloc.flag.%{_flagname}%":
+						send formatted "&3- <command:/giverune %{_flagname}% %arg-1%><tooltip:Click to equip &l%{_flagname}%>%{_flagname}%"

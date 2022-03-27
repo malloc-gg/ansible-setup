@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft UHC Server
+Requires=docker.service
+Wants=mariadb.service waterfall.service
+After=mariadb.service docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop uhc
+ExecStartPre=-/usr/bin/docker rm uhc
+ExecStart=/usr/bin/docker run --rm --network minecraft --name uhc -v /srv/minecraft/common-plugins/:/plugins -v /srv/minecraft/uhc:/data -e MAX_WORLD_SIZE=1000 -e MEMORY=2G -e TYPE=PAPER -e VERSION=1.17.1 -e REPLACE_ENV_VARIABLES=TRUE -e VIEW_DISTANCE=8 -e ONLINE_MODE=FALSE -e USE_AIKAR_FLAGS=true --ip 172.20.0.18 -e DIFFICULTY=normal -e CFG_SERVER_NAME=uhc -e EULA=TRUE itzg/minecraft-server:java16
+ExecStop=-/usr/bin/docker stop uhc
+
+[Install]
+WantedBy=multi-user.target

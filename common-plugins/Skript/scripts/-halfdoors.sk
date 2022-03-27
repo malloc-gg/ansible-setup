@@ -1,0 +1,27 @@
+function giveHalfDoor(p: player):
+	set {_est} to now
+	subtract 5 hours from {_est}
+	set {_doorDate} to {_est} formatted as "yyy-MM-dd"
+	if {local_malloc_gavedoor::%{_p}%} is not set or {local_malloc_gavedoor::%{_p}%} is not {_doorDate}:
+		set {_value} to "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTllYjlkYTI2Y2YyZDMzNDEzOTdhN2Y0OTEzYmEzZDM3ZDFhZDEwZWFlMzBhYjI1ZmEzOWNlYjg0YmMifX19"
+		set {_owner} to "5d43c6dd-ca01-466c-9614-764449140917"
+		set {_skull} to player head with nbt "{display:{Name:""{\""text\"":\""Mandatory Free Half-Door\""}""},SkullOwner:{Id:""%{_owner}%"",Properties:{textures:[{Value:""%{_value}%""}]}}}"
+		set {local_malloc_gavedoor::%{_p}%} to {_doorDate}
+		give {_skull} to {_p}
+
+command /wednesday <player=%player%>:
+	permission: malloc.wednesday
+	description: You shouldn't see this.
+	trigger:
+		set {_weekday} to now formatted as "EEEE"
+		send "&6Happy Mandatory Free Half-Door &4&k%{_weekday}%!" to player
+		giveHalfDoor(player)
+
+on join:
+	set {_est} to now
+	subtract 5 hours from {_est}
+	set {_weekday} to {_est} formatted as "EEEE"
+	if {malloc_force_halfdoors} or {_weekday} matches "Wednesday":
+		message "&6Happy Mandatory Free Half-Door %{_weekday}%!"
+		giveHalfDoor(player)
+		execute console command "/aach add 1 Custom.half_door_wednesday %{player}%"

@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft
+Requires=docker.service
+Wants=mariadb.service waterfall.service
+After=mariadb.service docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop minecraftd
+ExecStartPre=-/usr/bin/docker rm minecraftd
+ExecStart=/usr/bin/docker run --rm --name minecraftd -e CFG_SERVER_NAME=Malloc -e REPLACE_ENV_VARIABLES=TRUE -e MEMORY=13G -m 13g -e JVM_XX_ARGS=-Dminecraftd -e ENABLE_ROLLING_LOGS=true -e USE_AIKAR_FLAGS=true -p 0.0.0.0:24452:24452/udp -v /srv/minecraft/common-plugins/:/plugins -v /srv/minecraft/tiles:/dynmap-tiles:rw -v /srv/minecraft/server:/data:z -e EULA=TRUE --network minecraft -e TYPE=PAPER -e VERSION=1.17.1 --ip 172.20.0.10 itzg/minecraft-server:java16 --noconsole
+ExecStop=-/usr/bin/docker stop minecraftd
+
+[Install]
+WantedBy=multi-user.target

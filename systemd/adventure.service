@@ -1,0 +1,16 @@
+[Unit]
+Description=Malloc Adventure
+Requires=docker.service
+Wants=mariadb.service waterfall.service
+After=mariadb.service docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop adventure
+ExecStartPre=-/usr/bin/docker rm adventure
+ExecStart=/usr/bin/docker run -e TYPE=PAPER --network minecraft --name adventure -v /srv/minecraft/adventure/:/data -v /srv/minecraft/common-plugins/:/plugins -e REPLACE_ENV_VARIABLES=TRUE -e CFG_SERVER_NAME="Adventure" -e EULA=TRUE -e ONLINE_MODE=FALSE itzg/minecraft-server
+ExecStop=-/usr/bin/docker stop adventure
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,16 @@
+[Unit]
+Description=Villager Defense
+Requires=docker.service
+Wants=mariadb.service waterfall.service
+After=mariadb.service docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop villger-defense
+ExecStartPre=-/usr/bin/docker rm villager-defense
+ExecStart=/usr/bin/docker run -e MEMORY=4G -m 4g -e VERSION=1.17.1 --ip 172.20.0.6 -e USE_AIKAR_FLAGS=true -e TYPE=PAPER --network minecraft --name villager-defense -v /srv/minecraft/villager-defense/:/data -v /srv/minecraft/common-plugins/:/plugins -e REPLACE_ENV_VARIABLES=TRUE -e CFG_SERVER_NAME="Villager-Defense" -e EULA=TRUE -e ONLINE_MODE=FALSE itzg/minecraft-server:java16
+ExecStop=-/usr/bin/docker stop villager-defense
+
+[Install]
+WantedBy=multi-user.target
+

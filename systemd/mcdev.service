@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft Dev Server
+Requires=docker.service
+Wants=mariadb.service waterfall.service
+After=mariadb.service docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop mcdev
+ExecStartPre=-/usr/bin/docker rm mcdev
+ExecStart=/usr/bin/docker run --rm --network minecraft --name mcdev -v /srv/minecraft/common-plugins/:/plugins -v /srv/minecraft/mcdev:/data -e MAX_WORLD_SIZE=4000 -m 2g -e MEMORY=2G -e TYPE=PAPER -e VERSION=1.18.2 -p 0.0.0.0:24454:24454/udp -p 0.0.0.0:8080:8080 -e REPLACE_ENV_VARIABLES=TRUE -e VIEW_DISTANCE=8 -e ONLINE_MODE=FALSE -e USE_AIKAR_FLAGS=true --ip 172.20.0.7 -e DIFFICULTY=normal -e CFG_SERVER_NAME=mcdev -e EULA=TRUE itzg/minecraft-server:latest
+ExecStop=-/usr/bin/docker stop mcdev
+
+[Install]
+WantedBy=multi-user.target

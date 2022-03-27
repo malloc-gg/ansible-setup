@@ -1,0 +1,15 @@
+[Unit]
+Description=Waterfall Minecraft Proxy
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop waterfall
+ExecStartPre=-/usr/bin/docker rm waterfall
+ExecStart=/usr/bin/docker run -e ENABLE_RCON=true -e RCON_PASSWORD=waterfall -e RCON_PORT=25585 -e TYPE=WATERFALL -v /srv/minecraft/waterfall:/server --name waterfall --network host itzg/bungeecord:latest
+ExecStop=-/usr/bin/docker stop waterfall
+
+[Install]
+WantedBy=multi-user.target
+

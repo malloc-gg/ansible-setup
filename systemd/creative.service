@@ -1,0 +1,16 @@
+[Unit]
+Description=Minecraft Creative
+Requires=docker.service
+Wants=mariadb.service waterfall.service
+After=mariadb.service docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop creative
+ExecStartPre=-/usr/bin/docker rm creative
+ExecStart=/usr/bin/docker run --network minecraft -e VERSION=1.17.1 -m 2g -e CFG_SERVER_NAME=Creative -e REPLACE_ENV_VARIABLES=TRUE --name creative -e TYPE=PAPER -v /srv/minecraft/common-plugins/:/plugins -v /srv/minecraft/creative:/data -e MAX_WORLD_SIZE=10000 -e MEMORY=2G -e ONLINE_MODE=FALSE -e USE_AIKAR_FLAGS=true -e DIFFICULTY=peaceful -e MODE=creative -e EULA=TRUE --restart=always --ip 172.20.0.5 itzg/minecraft-server:java16
+ExecStop=-/usr/bin/docker stop creative
+
+[Install]
+WantedBy=multi-user.target
+

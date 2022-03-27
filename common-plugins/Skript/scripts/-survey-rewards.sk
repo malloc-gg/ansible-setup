@@ -1,0 +1,6 @@
+command /weekly-reward <player=%player%>:
+	permission: malloc.weekly-reward
+	description: Give someone a weekly survey reward
+	trigger:
+		execute console command "eco add %player% 303"
+		execute console command "aach add 1 Custom.weekly_ballot %player%"

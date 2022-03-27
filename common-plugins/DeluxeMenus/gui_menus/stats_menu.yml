@@ -1,0 +1,33 @@
+open_command: stats
+size: 9
+menu_title: "Stats"
+update_interval: 1
+open_commands:
+  - '[sound] BLOCK_BEACON_ACTIVATE'
+items:
+  'sessions':
+    material: 'head-%player_name%'
+    slot: 0
+    display_name: 'Sessions: %plan_player_sessions_count%'
+  'deaths':
+    material: 'IRON_SWORD'
+    slot: 1
+    display_name: 'Deaths: %plan_player_death_count%'
+  'mobs':
+    material: 'DIAMOND_SWORD'
+    slot: 2
+    display_name: 'Mob kills: %plan_player_mob_kill_count%'
+  'playtime':
+    material: 'CLOCK'
+    slot: 3
+    update: true
+    display_name: 'Playtime: %plan_player_time_total%'
+  'points':
+    material: 'NETHER_STAR'
+    slot: 7
+    update: true
+    display_name: '&7Malloc Bytes: &4%playerpoints_points%'
+  'start':
+    material: 'DIAMOND'
+    slot: 8
+    display_name: 'Join date: %plan_player_registered%'

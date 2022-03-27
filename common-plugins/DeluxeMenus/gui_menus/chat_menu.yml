@@ -1,0 +1,50 @@
+open_command: chat
+size: 9
+menu_title: "Chat Menu"
+open_commands:
+  - '[sound]'
+items:
+  'global':
+    material: FILLED_MAP
+    slot: 0
+    display_name: '&l&fGlobal'
+    left_click_commands:
+      - '[player] channel global'
+      - '[close]'
+  'trade':
+    material: COBBLESTONE
+    slot: 1
+    display_name: '&l&3Trade'
+    left_click_commands:
+      - '[player] channel global'
+      - '[close]'
+  'local':
+    material: GRASS
+    slot: 2
+    display_name: '&l&3Local'
+    lore:
+      - 'Has a range of 230 blocks'
+    left_click_commands:
+      - '[player] channel local'
+      - '[close]'
+  'towny':
+    material: IRON_INGOT
+    slot: 3
+    display_name: '&l&6Town (%townyadvanced_town%)'
+    left_click_commands:
+      - '[player] channel town'
+      - '[close]'
+  'help':
+    material: APPLE
+    slot: 8
+    display_name: '&l&bHelp'
+    left_click_commands:
+      - '[player] channel help'
+      - '[close]'
+  'server':
+    material: REDSTONE
+    slot: 7
+    display_name: '&l&eServer Local (Malloc)'
+    left_click_commands:
+      - '[player] channel serverlocal'
+      - '[close]'

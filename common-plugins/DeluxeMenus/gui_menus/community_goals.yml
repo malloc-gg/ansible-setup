@@ -1,0 +1,35 @@
+open_command: goals
+register_command: true
+size: 36
+menu_title: "Community Goals"
+open_requirement:
+  requirements:
+    can_see:
+      type: has permission
+      permission: malloc.menus.community_goals
+items:
+  pvp_champions:
+    material: DIAMOND_SWORD
+    slot: 13
+    display_name: '&f&lPvP Champions'
+    lore:
+      - 'Can you rise to the top in combat?'
+      - ''
+      - '&f&l1st: %alonsoleaderboards_ranking_name_pvp-kills_1% - %alonsoleaderboards_ranking_score_pvp-kills_1%'
+      - '&b2nd: %alonsoleaderboards_ranking_name_pvp-kills_2% - %alonsoleaderboards_ranking_score_pvp-kills_2%'
+      - '&e3rd: %alonsoleaderboards_ranking_name_pvp-kills_3% - %alonsoleaderboards_ranking_score_pvp-kills_3%'
+      - '&7(Scoreboard updated roughly every half hour)'
+    left_click_commands:
+      - '[message] Go kill your friends, silly!'
+  killboard:
+    material: DIAMOND_SWORD
+    slot: 20
+    display_name: "&f&lPvP Leaderboard"
+    left_click_commands:
+      - '[player] alonsoleaderboards open pvp-kills'
+  deathboard:
+    material: WOODEN_SWORD
+    slot: 24
+    display_name: "&f&lPvP Deathboard"
+    left_click_commands:
+      - '[player] alonsoleaderboards open pvp-deaths'

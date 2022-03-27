@@ -1,0 +1,15 @@
+[Unit]
+Description=Skywars
+Requires=docker.service
+Wants=mariadb.service waterfall.service
+After=mariadb.service docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop skywars
+ExecStartPre=-/usr/bin/docker rm skywars
+ExecStart=/usr/bin/docker run -e TYPE=PAPER --network minecraft --name skywars -e MEMORY=2G --ip 172.20.0.3 -e USE_AIKAR_FLAGS=true -v /srv/minecraft/skywars/:/data -v /srv/minecraft/common-plugins/:/plugins -e REPLACE_ENV_VARIABLES=TRUE -e CFG_SERVER_NAME=Skywars -e EULA=TRUE -e ONLINE_MODE=FALSE itzg/minecraft-server:java16
+ExecStop=-/usr/bin/docker stop skywars
+
+[Install]
+WantedBy=multi-user.target

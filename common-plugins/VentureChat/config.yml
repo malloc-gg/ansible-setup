@@ -1,0 +1,234 @@
+# 
+#                     VentureChat Config                       =
+#                      Author: Aust1n46                        =                     
+filters: []
+blockablecommands: []
+nicknames: []
+nickname-in-tablist: true
+commandspy:
+  format: '&6{player}: {command}'
+  worldeditcommands: true
+antispam:
+  enabled: false
+  spamnumber: 5
+  spamtime: 10
+  mutetime: 10
+mysql:
+  enabled: false
+  user: User
+  port: 3306
+  password: Password
+  host: localhost
+  database: Database
+login:
+  enabled: true
+  message: Default
+logout:
+  enabled: true
+  message: Default
+loglevel: info
+saveinterval: 30
+unmuteinterval: 60
+bungeecordmessaging: true
+vanishsupport: true
+tellformatto: You message {playerto}:&7
+tellformatfrom: '{playerfrom} messages you:&7'
+tellformatspy: '{playerfrom} messages {playerto}:&7'
+replyformatto: You reply to {playerto}:&7
+replyformatfrom: '{playerfrom} replies to you:&7'
+replyformatspy: '{playerfrom} replied to {playerto}:&7'
+partyformat: Default
+formatcleaner: true
+ignorechat: false
+emptychannelalert: '&6No one is listening to you.'
+messageremoverpermissions: '&cYou need additional permissions to view this message!'
+messageremovertext: '&c&o<message removed>'
+jsonformatting:
+  Default:
+    priority: 2147483647
+    hover_name:
+    - '&6A visitor from a strange land...'
+    click_name: suggest_command
+    click_name_text: /msg {player_name}
+    hover_prefix:
+    - '&dVisitors have limited powers here.'
+    click_prefix: run_command
+    click_prefix_text: /help
+    hover_suffix:
+    - ''
+    click_suffix: suggest_command
+    click_suffix_text: /msg {player_name}
+  player:
+    priority: 1000000
+    hover_name:
+    - ''
+    click_name: suggest_command
+    click_name_text: /msg {player_name}
+    hover_prefix:
+    - '&r{luckperms_meta_rank-description}'
+    click_prefix: run_command
+    click_prefix_text: /help
+    hover_suffix:
+    - ''
+    click_suffix: suggest_command
+    click_suffix_text: /msg {player_name}
+  administration:
+    priority: 1000
+    hover_name:
+    - '&cThe Administration'
+    click_name: suggest_command
+    click_name_text: /msg {player_name}
+    hover_prefix:
+    - '&r{luckperms_meta_rank-description}'
+    click_prefix: run_command
+    click_prefix_text: /help
+    hover_suffix:
+    - ''
+    click_suffix: suggest_command
+    click_suffix_text: /msg {player_name}
+venturegui:
+  mute:
+    icon: REDSTONE_BLOCK
+    durability: 0
+    text: '&cMute {player_name}'
+    permission: mute
+    command: /mute {player_name} {channel} 10
+    slot: 1
+  unmute:
+    icon: DIAMOND_BLOCK
+    durability: 0
+    text: '&bUnmute {player_name}'
+    permission: mute
+    command: /unmute {player_name} {channel}
+    slot: 2
+  removemessage:
+    icon: DIAMOND_AXE
+    durability: 0
+    text: '&cRemove Message'
+    permission: removemessage
+    command: /removemessage {hash} {channel}
+    slot: 7
+guiicon: '&c [✓]'
+guitext: '&cOpen Moderation GUI'
+guirows: 1
+underlineurls: true
+broadcast:
+  color: red
+  permissions: venturechat.adminchannel
+  displaytag: '[Broadcast]'
+alias: {}
+enable_towny_channel: true
+enable_factions_channel: false
+channels:
+  Announcements:
+    color: red
+    chatcolor: red
+    mutable: false
+    filter: false
+    autojoin: true
+    default: false
+    distance: 0
+    cooldown: 0
+    bungeecord: true
+    alias: announce
+    permissions: None
+    speak_permissions: broadcast
+    format: '&f[&aServer Announcement&f] {vault_prefix}{player_displayname}{vault_suffix}&c:'
+  Global:
+    color: white
+    chatcolor: white
+    mutable: true
+    filter: true
+    autojoin: true
+    default: true
+    distance: 0
+    cooldown: 0
+    bungeecord: true
+    alias: g
+    permissions: None
+    speak_permissions: None
+    format: '&f[{luckperms_context_server}] {vault_prefix}{player_displayname}{vault_suffix}&f:'
+  ServerLocal:
+    color: yellow
+    chatcolor: yellow
+    mutable: true
+    filter: true
+    autojoin: true
+    default: false
+    distance: 0
+    cooldown: 0
+    bungeecord: false
+    alias: sl
+    permissions: None
+    speak_permissions: None
+    format: '&f[&e{luckperms_context_server} Local&f] {vault_prefix}{player_displayname}{vault_suffix}&f:'
+  Town:
+    color: gold
+    chatcolor: gold
+    mutable: true
+    filter: true
+    autojoin: true
+    default: false
+    distance: 0
+    cooldown: 0
+    bungeecord: false
+    alias: tc
+    permissions: None
+    speak_permissions: None
+    format: '&f[&6{townyadvanced_town}&f] {vault_prefix}{player_displayname}{vault_suffix}&6:'
+  Nation:
+    color: gold
+    chatcolor: gold
+    mutable: true
+    filter: true
+    autojoin: true
+    default: false
+    distance: 0
+    cooldown: 0
+    bungeecord: false
+    alias: nc
+    permissions: None
+    speak_permissions: None
+    format: '&f[&6{townyadvanced_nation}&f] {vault_prefix}{player_displayname}{vault_suffix}&6:'
+  Help:
+    color: aqua
+    chatcolor: aqua
+    mutable: true
+    filter: true
+    autojoin: true
+    default: false
+    distance: 0
+    cooldown: 0
+    bungeecord: true
+    alias: helpop
+    permissions: None
+    speak_permissions: None
+    format: '&f[&bHelp&f] {vault_prefix}{player_displayname}{vault_suffix}&b:'
+  Trade:
+    color: dark_aqua
+    chatcolor: dark_aqua
+    mutable: true
+    filter: true
+    autojoin: true
+    default: false
+    distance: 0
+    cooldown: 0
+    bungeecord: false
+    alias: trade
+    permissions: None
+    speak_permissions: trade
+    format: '&f[&3Trade&f] {vault_prefix}{player_displayname}{vault_suffix}&3:'
+  Local:
+    color: yellow
+    chatcolor: yellow
+    mutable: true
+    filter: true
+    autojoin: true
+    default: false
+    distance: 230
+    cooldown: 0
+    bungeecord: false
+    alias: l
+    permissions: None
+    speak_permissions: None
+    format: '&f[&eLocal&f] {vault_prefix}{player_displayname}{vault_suffix}&e:'
